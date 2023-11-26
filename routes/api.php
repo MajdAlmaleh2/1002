@@ -25,5 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('users', [UserController::class, 'store']);
 Route::post('login', [UserController::class, 'login']);
 Route::delete('logout',[UserController::class, 'logout']);
+Route::get('user', [UserController::class, 'getUser']);
 
 Route::post('pharma',[PharmaceuticalController::class,'store']);

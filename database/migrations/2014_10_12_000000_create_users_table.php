@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone')->unique();
             $table->string('password');
+            $table->string('api_token');
             $table->boolean('ispharmacy');
             $table->boolean('iswarehouse');
             $table->rememberToken();

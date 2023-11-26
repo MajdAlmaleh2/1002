@@ -80,8 +80,8 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        $phone = $request->input('phone');
-        $user = User::where('phone', $phone)->first();
+        $token = $request->input('api_token');
+        $user = User::where('api_token', $token)->first();
     
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);

@@ -47,23 +47,23 @@ class UserController extends Controller
 
 
 
-
     public function login(Request $request)
     {
         $phone = $request->input('phone');
         $password = $request->input('password');
+        $isPharmacy = $request->input('ispharmacy');
+        $isWarehouse= $request->input('iswarehouse');
     
         // Find the user by phone
         $user = User::where('phone', $phone)->first();
     
-        // If user doesn't exist or password is incorrect
-        if (!$user || !Hash::check($password, $user->password)) {
+        // If user doesn't exist, password is incorrect, or isPharmacy doesn't match
+        if (!$user || !Hash::check($password, $user->password) || $user->ispharmacy != $isPharmacy||$user->isWarehouse != $isWarehouse) {
             return response()->json([
-                'Error' => 'Phone number does not exist or the Password is incorrect'
-            ], 401);
+                'Error' => 'Phone number does not exist, the Password is incorrect'], 401);
         }
     
-        // If phone and password are correct
+        // If phone and password are correct, and isPharmacy matches
         $token = Str::random(60);
     
         // Store the token in the database

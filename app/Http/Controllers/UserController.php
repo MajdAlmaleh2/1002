@@ -58,7 +58,7 @@ class UserController extends Controller
         $user = User::where('phone', $phone)->first();
     
         // If user doesn't exist, password is incorrect, or isPharmacy doesn't match
-        if (!$user || !Hash::check($password, $user->password) || $user->ispharmacy != $isPharmacy||$user->isWarehouse != $isWarehouse) {
+        if (!$user || !Hash::check($password, $user->password) || $user->ispharmacy != $isPharmacy||$user->iswarehouse != $isWarehouse) {
             return response()->json([
                 'Error' => 'Phone number does not exist, the Password is incorrect'], 401);
         }
